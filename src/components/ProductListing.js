@@ -4,12 +4,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setProducts } from "../Redux/actions/productActions";
 import { Container, Row, Card, Badge, Spinner } from "react-bootstrap";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const ProductListing = () => {
   const products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await axios
@@ -24,8 +24,7 @@ const ProductListing = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <h3 style={{ textAlign: "center", padding: "1rem" }}>Product Listing</h3>
+    <>
       <Container className="content-wrapper">
         {products.length === 0 ? (
           <Row
@@ -41,25 +40,29 @@ const ProductListing = () => {
           </Row>
         ) : (
           products.map((item) => (
-            <Card className="card-item" key={item.id}>
-              <Link to={`/product/${item.id}`} >
+            <Link
+              to={`/product/${item.id}`}
+              className="card-link"
+              key={item.id}
+            >
+              <Card className="shadow p-2 rounded">
                 <Card.Img
                   variant="top"
                   src={item.image}
-                  style={{ width: "200px" }}
                 />
                 <Card.Body>
                   <Card.Title>{item.title}</Card.Title>
+                  <Card.Text>Category : {item.category}</Card.Text>
                   <Badge pill variant="warning" size="lg">
                     $ {item.price}
-                  </Badge>
+                  </Badge> 
                 </Card.Body>
-              </Link>
-            </Card>
+              </Card>
+            </Link>
           ))
         )}
       </Container>
-    </div>
+    </>
   );
 };
 

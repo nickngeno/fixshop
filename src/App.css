@@ -11,13 +11,24 @@ body{
 
 .content-wrapper{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  /* grid-template-rows: min-content; */
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 10px;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 
 }
-.card-item{
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
+.card-link{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+
+}
+.card img{
+  width: 100%;
+  height: 250px;
+}
+@media screen and (max-width: 650px){
+  .card img{
+    width: 100% !important;
+    /* border: solid 1px red; */
+  }
 }
